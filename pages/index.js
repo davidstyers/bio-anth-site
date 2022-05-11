@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
@@ -11,7 +10,6 @@ const MAX_DISPLAY = 64
 
 export async function getStaticProps() {
   const questions = await getAllFilesFrontMatter('questions')
-  console.log(questions)
 
   return { props: { questions } }
 }
@@ -66,17 +64,6 @@ export default function Home({ questions }) {
           })}
         </ul>
       </div>
-      {questions.length > MAX_DISPLAY && (
-        <div className="flex justify-end text-base font-medium leading-6">
-          <Link
-            href="/blog"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label="all posts"
-          >
-            All Questions &rarr;
-          </Link>
-        </div>
-      )}
       {siteMetadata.newsletter.provider !== '' && (
         <div className="flex items-center justify-center pt-4">
           <NewsletterForm />
